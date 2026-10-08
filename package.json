@@ -1,0 +1,18 @@
+{
+  "name": "gpt-oracle-studio",
+  "version": "1.0.0",
+  "description": "A free, keyless SomaFM listening studio with Phi-compatible widgets.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "check": "node --check app.js && node --check apiphi.js && node --check widgetphi.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/www-infinity4/GPT-Oracle-Studio"
+  },
+  "keywords": [],
+  "author": ""
+}
