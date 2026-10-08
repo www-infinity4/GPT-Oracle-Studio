@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10141d">
+  <meta name="description" content="Your listening space. Explore independent, listener-supported SomaFM radio in a free Oracle Studio. No accounts. No API keys.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://somafm.com https://*.somafm.com; connect-src 'self' https://somafm.com https://*.somafm.com https://raw.githubusercontent.com; media-src https://*.somafm.com; base-uri 'none'; object-src 'none'; form-action 'none'">
+  <title>Soma · Oracle Studio</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#stations">Skip to stations</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Soma Oracle Studio home"><span class="brand-mark">s<span>•</span></span><span>soma<span class="brand-sub">ORACLE STUDIO</span></span></a>
+    <nav aria-label="Main navigation"><a href="#stations">Discover</a><a href="#tools">Studio tools</a><a href="https://somafm.com/" target="_blank" rel="noopener noreferrer">SomaFM ↗</a></nav>
+    <span class="header-tag"><i></i> Independent radio</span>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-star">✦</span> HUMAN-CURATED. LIMITLESS DISCOVERY.</p>
+        <h1 id="hero-title">A little less noise.<br>A lot more <em>signal.</em></h1>
+        <p class="hero-description">Find your frequency. Independent sounds for deep work, late nights, and everything in between.</p>
+        <div class="hero-actions"><a class="button primary" href="#stations">Explore the stations <span>↗</span></a><span class="free-note">Free to listen.<br>No sign-up. No keys.</span></div>
+        <div class="hero-foot"><span>POWERED BY SOMAFM</span><span>Listener-supported · Commercial-free</span></div>
+      </div>
+      <div class="signal-art" aria-hidden="true">
+        <div class="art-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+        <div class="signal-core">s<span>•</span></div><span class="art-label label-top">TRANSMISSIONS / SAN FRANCISCO</span><span class="art-label label-bottom">TUNE INTO SOMETHING GOOD <span>↗</span></span>
+        <div class="art-dot dot-one"></div><div class="art-dot dot-two"></div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Radio workspace">
+      <div class="discovery" id="stations">
+        <div class="section-heading"><div><p class="eyebrow">YOUR NEXT FREQUENCY</p><h2>The listening room<span id="station-count"></span></h2></div><button id="refresh" class="text-button" type="button">↻ Refresh</button></div>
+        <div class="filters">
+          <div class="tabs" role="group" aria-label="Station collection"><button type="button" id="all-tab" class="active" aria-pressed="true">All stations</button><button type="button" id="favorites-tab" aria-pressed="false">Favorites <span id="favorite-count">0</span></button></div>
+          <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">Search stations</span><input id="search" type="search" placeholder="Find your sound…" autocomplete="off"></label>
+          <label class="sr-only" for="genre">Filter by genre</label><select id="genre"><option value="">All genres</option></select>
+        </div>
+        <div class="source-line"><span id="source-status" role="status">Connecting to SomaFM…</span><span>NO ADS. JUST MUSIC.</span></div>
+        <div id="station-grid" class="station-grid" aria-busy="true"></div>
+        <p id="empty-state" class="empty-state" hidden>No stations match. Try another search or genre.</p>
+        <noscript><p class="empty-state">Enable JavaScript for studio controls, or <a href="https://somafm.com/">listen directly on SomaFM</a>.</p></noscript>
+      </div>
+
+      <aside class="studio-panel" aria-labelledby="player-heading">
+        <div class="panel-label"><span class="eyebrow">ON YOUR FREQUENCY</span><span class="tiny-star">✦</span></div>
+        <div id="player-art" class="player-art" aria-hidden="true"><span>◎</span><div class="equalizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>SOMA / ORACLE STUDIO</small></div>
+        <p id="player-genre" class="eyebrow">READY WHEN YOU ARE</p><h2 id="player-heading">Choose your sound</h2><p id="player-description">Select a station and settle in.</p>
+        <div class="track-info"><span>NOW PLAYING</span><p id="now-playing">Select a station to see track information.</p></div>
+        <button id="play-toggle" class="button primary play-button" type="button" disabled>▶ Play station</button>
+        <div class="volume-row"><label for="volume">Volume</label><input id="volume" type="range" min="0" max="1" step="0.05" value="0.7"><output id="volume-value" for="volume">70%</output></div>
+        <p id="playback-status" role="status" class="playback-status">Playback starts only when you press play.</p>
+        <div class="player-actions"><button id="share" type="button" class="text-button" disabled>↗ Share station</button><a id="station-link" href="https://somafm.com/" target="_blank" rel="noopener noreferrer">Station page ↗</a></div>
+        <audio id="audio" preload="none"></audio>
+        <div class="support-note"><span>♥</span><div><strong>Good radio is a collective effort.</strong><p>SomaFM is made possible by its listeners. Listening here is always free.</p><a href="https://somafm.com/support/" target="_blank" rel="noopener noreferrer">Support SomaFM (optional) ↗</a></div></div>
+      </aside>
+    </section>
+
+    <section id="tools" class="tools-section" aria-labelledby="tools-heading">
+      <div class="section-heading"><div><p class="eyebrow">THE PHI TOOLKIT</p><h2 id="tools-heading">Open tools. Better experiences.</h2></div><span class="tool-badge">FREE / NO API KEYS</span></div>
+      <div class="tool-intro"><p>Radio cards use a local <a href="https://github.com/www-infinity4/WidgetPhi" target="_blank" rel="noopener noreferrer">WidgetPhi-compatible adapter ↗</a>. Discover reusable, free sources from <a href="https://github.com/www-infinity4/APIPhi" target="_blank" rel="noopener noreferrer">APIPhi’s shared catalog ↗</a>.</p><span id="catalog-status" role="status">Loading catalog…</span></div>
+      <div id="api-grid" class="api-grid"></div>
+    </section>
+  </main>
+  <footer><span class="footer-brand">soma <span>/ Oracle Studio</span></span><p>An independent interface, not affiliated with SomaFM. Music and station information belong to their providers.</p><a href="https://github.com/www-infinity4/GPT-Oracle-Studio" target="_blank" rel="noopener noreferrer">Built in the open ↗</a></footer>
+  <p id="notice" class="notice" role="status" hidden></p>
+</body>
+</html>
