@@ -1,0 +1,78 @@
+{
+  "schema": "gpt-oracle-studio.capability-route/v1",
+  "name": "codephi-podcast-card",
+  "category": "widget/card/audio",
+  "mode": "Code Phi reusable plugin (not SomaFM channel)",
+  "input": {
+    "episodeSource": "creator-provided HTTPS URL or RSS",
+    "media": "optional authorized file URL",
+    "title": "verified metadata or creator entry",
+    "creatorWallet": "existing Unified Wallet",
+    "priceStarCoins": {
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "integer": true
+    },
+    "firstFree": true,
+    "quantPacket": "original Infinity/Omni search token plus past searches/stars/collects"
+  },
+  "orderedTools": [
+    {
+      "position": 1,
+      "repo": "QuantaPhi",
+      "capability": "bind original search + purple assimilation context"
+    },
+    {
+      "position": 2,
+      "repo": "APIPhi",
+      "capability": "resolve public RSS and authorized provider metadata"
+    },
+    {
+      "position": 3,
+      "repo": "Oracle",
+      "capability": "read podcast-yellow style contract"
+    },
+    {
+      "position": 4,
+      "repo": "WidgetPhi",
+      "capability": "render podcast-card with Share, Collect, Star"
+    },
+    {
+      "position": 5,
+      "repo": "LayaPhi",
+      "capability": "select mobile layout based on media and user task"
+    },
+    {
+      "position": 6,
+      "repo": "Omni-Phi",
+      "capability": "Code Phi assembles, previews, and audits full page"
+    },
+    {
+      "position": 7,
+      "repo": "Unified-Wallet",
+      "capability": "verify creator and listener, reward/paid settlement receipts"
+    },
+    {
+      "position": 8,
+      "repo": "Web-Phi",
+      "capability": "durably publish verified revision"
+    }
+  ],
+  "fallbacks": {
+    "noAudio": "attributed official page link; no fake Play button",
+    "noSourceMetadata": "require creator confirmation; never hallucinate",
+    "noWallet": "first episode only; additional playback disabled",
+    "rssCors": "ask for creator file or verified feed; never require purchased API keys",
+    "renderError": "keep last working preview and show repair cue"
+  },
+  "completion": [
+    "first free playable or legitimately linked episode visible",
+    "images properly sourced and reviewed",
+    "full description available on demand",
+    "star/share/collect actions work but do not fabricate ledger credit",
+    "paid episode debit+creator credit use one authenticated idempotent server transaction",
+    "media-end/read-end events can request a new entitled card",
+    "Cloud Browser checks finished rendered page before Web Phi publish"
+  ]
+}
