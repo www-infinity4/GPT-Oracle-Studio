@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import {
   SOMA_SOURCE, STARTER_STATIONS, CATALOG_URL, fetchResource, filterStations, freeSources,
   loadCatalog, loadStations, normalizeChannels, parsePlaylist, readFavorites, resolveStream, somaURL,
@@ -14,6 +15,16 @@ const channel = {
   largeimage: 'https://somafm.com/logos/groovesalad.jpg',
   playlists: [{ format: 'mp3', quality: 'highest', url: 'https://api.somafm.com/groovesalad.pls' }],
 };
+
+test('content security policy permits validated apex and subdomain SomaFM resources', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const policy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
+  for (const name of ['img-src', 'connect-src']) {
+    const directive = policy.split(';').find(value => value.trim().startsWith(`${name} `));
+    assert.ok(directive.split(/\s+/).includes('https://somafm.com'));
+    assert.ok(directive.split(/\s+/).includes('https://*.somafm.com'));
+  }
+});
 
 test('normalizes actual SomaFM metadata and playlists without fabricating statistics', () => {
   const [station] = normalizeChannels({ channels: [channel] });
