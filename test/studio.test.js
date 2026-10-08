@@ -21,8 +21,9 @@ test('content security policy permits validated apex and subdomain SomaFM resour
   const policy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
   for (const name of ['img-src', 'connect-src']) {
     const directive = policy.split(';').find(value => value.trim().startsWith(`${name} `));
-    assert.ok(directive.split(/\s+/).includes('https://somafm.com'));
-    assert.ok(directive.split(/\s+/).includes('https://*.somafm.com'));
+    const hosts = new Set(directive.trim().split(/\s+/));
+    assert.ok(hosts.has('https://somafm.com'));
+    assert.ok(hosts.has('https://*.somafm.com'));
   }
 });
 
